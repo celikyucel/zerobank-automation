@@ -17,6 +17,7 @@ public class LoginStepDefs {
     public void the_user_is_on_the_login_page() {
         String url = ConfigurationReader.get("url");
         Driver.get().get(url);
+        BrowserUtils.waitFor(1);
     }
 
     @When("the user enters the user information")
@@ -25,6 +26,7 @@ public class LoginStepDefs {
         String password = ConfigurationReader.get("user_password");
 
         new LoginPage().login(username,password);
+
     }
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
