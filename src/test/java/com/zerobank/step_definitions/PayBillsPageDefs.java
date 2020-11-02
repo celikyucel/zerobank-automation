@@ -28,10 +28,14 @@ public class PayBillsPageDefs {
     @Then("the user enters the amount and date")
     public void the_user_enters_the_amount_and_date() {
         PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.amount.sendKeys("50");
-        payBillsPage.date.sendKeys("2020-10-30");
 
+        payBillsPage.amount.sendKeys("50");
+        payBillsPage.date.sendKeys("2020-11-30");
+
+        BrowserUtils.waitFor(2);
         payBillsPage.payButton.click();
+
+
     }
 
     @Then("{string} should be displayed")
@@ -45,7 +49,9 @@ public class PayBillsPageDefs {
         PayBillsPage payBillsPage = new PayBillsPage();
         payBillsPage.date.sendKeys("2020-10-30");
 
+        BrowserUtils.waitForClickablility(payBillsPage.payButton,3);
         payBillsPage.payButton.click();
+
     }
 
     @When("the user doesn't enter the date field")
@@ -53,7 +59,9 @@ public class PayBillsPageDefs {
         PayBillsPage payBillsPage = new PayBillsPage();
         payBillsPage.amount.sendKeys("50");
 
+        BrowserUtils.waitForClickablility(payBillsPage.payButton,3);
         payBillsPage.payButton.click();
+
     }
 
     @Then("{string} message should be displayed")
@@ -69,24 +77,29 @@ public class PayBillsPageDefs {
     @When("the user enters alphabetical characters in the amount field and valid characters in the date field")
     public void the_user_enters_alphabetical_characters_in_the_amount_field_and_valid_characters_in_the_date_field() {
         PayBillsPage payBillsPage = new PayBillsPage();
-        payBillsPage.amount.sendKeys("abc");
+        payBillsPage.amount.sendKeys("abc@");
+
         payBillsPage.date.sendKeys("2020-10-30");
 
+        BrowserUtils.waitForClickablility(payBillsPage.payButton,3);
         payBillsPage.payButton.click();
+
     }
 
     @When("the user enters valid characters in the amount field and alphabetical characters in the date field")
     public void the_user_enters_valid_characters_in_the_amount_field_and_alphabetical_characters_in_the_date_field() {
         PayBillsPage payBillsPage = new PayBillsPage();
         payBillsPage.amount.sendKeys("50");
-        payBillsPage.date.sendKeys("abc");
+        payBillsPage.date.sendKeys("abcdef");
 
+        BrowserUtils.waitForClickablility(payBillsPage.payButton,3);
         payBillsPage.payButton.click();
+
     }
 
     @Then("{string} should be not displayed")
     public void should_be_not_displayed(String expectedMessage) {
-      Assert.assertFalse(new PayBillsPage().submitMessage.isDisplayed());
+      Assert.assertNotEquals(expectedMessage,new PayBillsPage().submitMessage.getText());
     }
 
 }

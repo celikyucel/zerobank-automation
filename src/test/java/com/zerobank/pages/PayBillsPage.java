@@ -22,7 +22,7 @@ public class PayBillsPage {
     @FindBy(id = "sp_date")
     public WebElement date;
 
-    @FindBy(xpath = "//input[@*='submit']")
+    @FindBy(id ="pay_saved_payees")
     public WebElement payButton;
 
     @FindBy(linkText = "Add New Payee")

@@ -1,3 +1,4 @@
+@PayBills
 Feature: Pay Bills Page
 
   Background:
@@ -20,6 +21,7 @@ Feature: Pay Bills Page
     When the user doesn't enter the date field
     Then "Please fill out this field." message should be displayed
 
+  @wip
   Scenario: Make a payment with entering the invalid characters in the amount
     When the user enters alphabetical characters in the amount field and valid characters in the date field
     Then "The payment was successfully submitted." should be not displayed
